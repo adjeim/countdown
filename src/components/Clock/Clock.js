@@ -9,25 +9,30 @@ class Clock extends Component {
 			minutes: 0,
 			seconds: 0
 		}
+		console.log(this.props);
 	}
 
 	setTimer() {
+		// this.setState({ hours, minutes, seconds});
 
 	}
 
 	render() {
-		console.log(this.state.hours, 'hours', this.state.minutes, 'minutes', this.state.seconds, 'seconds');
+		// console.log(this.state.hours, 'hours', this.state.minutes, 'minutes', this.state.seconds, 'seconds');
+		// console.log(this.props);
 
 		return (
 			<div>
-	      <form className = 'SelectTime'>
-	      	<input type = 'number' min ='0' max = '24' default = { this.state.hours } /> hours
-	      	<input type = 'number' min ='0' max = '60' default = { this.state.minutes } /> minutes
-	      	<input type = 'number' min ='0' max = '60' default = { this.state.seconds } /> seconds
-	      </form>
-	      
+
+
+
 				<div className = 'Clock-face'>
 					This is where the clock will go.
+					<div>
+						<span className = 'hours'>{ this.props.hours }:</span>
+						<span className = 'minutes'>{ this.props.minutes }:</span>
+						<span className = 'seconds'>{ this.props.seconds }</span>
+					</div>
 				</div>
 			</div>
 
