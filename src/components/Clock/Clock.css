@@ -3,3 +3,11 @@
 	padding: 4em;
 	margin: 0 1em;
 }
+
+.SelectTime {
+	margin: 1em;
+}
+
+.SelectTime input {
+	margin: 0.5em;
+}
