@@ -7,22 +7,33 @@ class Clock extends Component {
 		this.state = {
 			hours: 0,
 			minutes: 0,
-			seconds: 0
+			seconds: 0,
+			deadline: ''
 		}
 		console.log(this.props);
 	}
 
-	getTime() {
-		const hours = this.props.hours;
-		const minutes = this.props.minutes;
-		const seconds = this.props.seconds;
+	getCountdown() {
+		const hours = this.props.countdown.hours;
+		const minutes = this.props.countdown.minutes;
+		const seconds = this.props.countdown.seconds;
 
 		this.setState({ hours, minutes, seconds});
+		console.log(this.state);
 	}
 
 	leadingZero(num) {
 		return num < 10 ? '0' + num : num;
 	}
+
+	componentWillReceiveProps(nextProps) {
+		this.getCountdown();
+	}
+
+	// componentDidMount() {
+	// 	setInterval(() => this.getCountdown(), 1000);
+	// }
+
 
 	render() {
 
