@@ -8,18 +8,32 @@ class Clock extends Component {
 			hours: 0,
 			minutes: 0,
 			seconds: 0,
-			deadline: ''
+      onTimer: 0
 		}
-		// console.log(this.props);
+		console.log(this.props);
 	}
 
-	getCountdown(props) {
-		const hours = props.countdown.hours;
-		const minutes = props.countdown.minutes;
-		const seconds = props.countdown.seconds;
+	getInitialCountdown(props) {
+    const hours = props.countdown.hours;
+    const minutes = props.countdown.minutes;
+    const seconds = props.countdown.seconds;
+    const onTimer = (hours * 1000 * 60 * 60) + (minutes * 1000 * 60) + (seconds * 1000);
 
-		this.setState({ hours, minutes, seconds});
-		// console.log(this.state);
+    this.setState({ hours, minutes, seconds, onTimer});
+	}
+
+	updateCountdown() {
+    const onTimer = this.state.onTimer - 1000;
+    console.log(onTimer);
+
+    const seconds = (Math.floor(onTimer / 1000) % 60);
+    const minutes = (Math.floor(onTimer / 1000 / 60) % 60);
+    const hours = (Math.floor(onTimer / 1000 / 60 / 60) % 24);
+
+    this.setState({ hours, minutes, seconds, onTimer });
+
+
+
 	}
 
 	leadingZero(num) {
@@ -27,10 +41,12 @@ class Clock extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		this.getCountdown(nextProps);
+		this.getInitialCountdown(nextProps);
 	}
 
-
+	componentDidMount() {
+		setInterval(() => this.updateCountdown(this.state.onTimer), 1000);
+	}
 
 
 	render() {
