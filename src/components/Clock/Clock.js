@@ -32,9 +32,14 @@ class Clock extends Component {
 
     this.setState({ hours, minutes, seconds, onTimer });
 
-
-
 	}
+
+  hasTimerReachedZero() {
+    if (this.state.onTimer === 0) {
+      return true;
+    }
+    return false;
+  }
 
 	leadingZero(num) {
 		return num < 10 ? '0' + num : num;
@@ -45,7 +50,13 @@ class Clock extends Component {
 	}
 
 	componentDidMount() {
-		setInterval(() => this.updateCountdown(this.state.onTimer), 1000);
+    setInterval(() => {
+      if (this.state.onTimer > 0) {
+        this.updateCountdown(this.state.onTimer);
+        // console.log(this.state);
+      };
+      
+    }, 1000);
 	}
 
 
